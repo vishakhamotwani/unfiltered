@@ -1,0 +1,40 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #111318;
+  --text: #EEEEF0;
+  --text-muted: rgba(255, 255, 255, 0.4);
+  --accent: #BDB5E8;
+  --accent-dim: rgba(189, 181, 232, 0.15);
+  --border: #252A35;
+  --surface: #1A1E26;
+  --warning: #E8B86D;
+  --error: #E87C7C;
+  --font: 'Geist', system-ui, -apple-system, sans-serif;
+  --font-display: 'DM Serif Display', Georgia, serif;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
