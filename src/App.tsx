@@ -6,6 +6,7 @@ import Header from './components/Header'
 import MicButton from './components/MicButton'
 import TranscriptEditor from './components/TranscriptEditor'
 import FeedbackPanel from './components/FeedbackPanel'
+import Footer from './components/Footer'
 import styles from './App.module.css'
 
 const speechSupported = isSpeechSupported()
@@ -97,7 +98,6 @@ export default function App() {
 
       <div className={styles.container}>
         <Header />
-
         <main className={styles.main}>
           <MicButton
             appState={appState}
@@ -142,6 +142,7 @@ export default function App() {
             </button>
           )}
         </main>
+        <Footer />
       </div>
     </div>
   )
