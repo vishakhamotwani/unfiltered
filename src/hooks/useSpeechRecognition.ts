@@ -67,12 +67,38 @@ export function useSpeechRecognition() {
     startInstance()
   }, [startInstance])
 
-  const stop = useCallback(() => {
+  const stop = useCallback((): Promise<string> => {
     activeRef.current = false
-    if (recognitionRef.current) {
-      recognitionRef.current.stop()
+    setNoSpeechWarning(false)
+
+    return new Promise((resolve) => {
+      const r = recognitionRef.current
+      if (!r) {
+        resolve(finalRef.current.trim())
+        return
+      }
+
       recognitionRef.current = null
-    }
+      let settled = false
+      const settle = () => {
+        if (!settled) {
+          settled = true
+          resolve(finalRef.current.trim())
+        }
+      }
+
+      // Resolve once onend fires — the browser guarantees any remaining
+      // isFinal results arrive in onresult before onend
+      r.onend = settle
+
+      // Delay before stopping so the audio buffer has time to flush
+      setTimeout(() => {
+        try { r.stop() } catch { settle() }
+      }, 400)
+
+      // Hard fallback: never leave the caller hanging
+      setTimeout(settle, 900)
+    })
   }, [])
 
   const reset = useCallback(() => {

@@ -17,7 +17,7 @@ export default function App() {
   const [feedback, setFeedback] = useState<FeedbackResponse | null>(null)
   const [error, setError] = useState<string | null>(null)
 
-  const { transcript, noSpeechWarning, start: startSpeech, stop: stopSpeech, reset: resetSpeech, getTranscript } =
+  const { transcript, noSpeechWarning, start: startSpeech, stop: stopSpeech, reset: resetSpeech } =
     useSpeechRecognition()
 
   // Break circular dep: stopRecording needs stopTimer, useTimer needs stopRecording
@@ -26,12 +26,12 @@ export default function App() {
   const { elapsed, start: startTimer, stop: stopTimer, reset: resetTimer, isWarning } =
     useTimer(stableOnMaxTime)
 
-  const stopRecording = useCallback(() => {
+  const stopRecording = useCallback(async () => {
     stopTimer()
-    stopSpeech()
-    setEditableTranscript(getTranscript())
+    const final = await stopSpeech()
+    setEditableTranscript(final)
     setAppState('transcribed')
-  }, [stopTimer, stopSpeech, getTranscript])
+  }, [stopTimer, stopSpeech])
 
   useEffect(() => {
     stopRecordingRef.current = stopRecording
