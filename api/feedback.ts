@@ -6,11 +6,13 @@ import type { VercelRequest, VercelResponse } from '@vercel/node'
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 
-const ratelimit = new Ratelimit({
-  redis: Redis.fromEnv(),
-  limiter: Ratelimit.slidingWindow(3, '1 d'),
-  analytics: false,
-})
+const ratelimit = process.env.UPSTASH_REDIS_REST_URL
+  ? new Ratelimit({
+      redis: Redis.fromEnv(),
+      limiter: Ratelimit.slidingWindow(3, '1 d'),
+      analytics: false,
+    })
+  : null
 
 // Reuses the same vars as the client-side Supabase instance
 const supabase = createClient(
@@ -31,12 +33,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
-  const ip =
-    (req.headers['x-forwarded-for'] as string | undefined)?.split(',')[0]?.trim() ?? '127.0.0.1'
-
-  const { success } = await ratelimit.limit(ip)
-  if (!success) {
-    return res.status(429).json({ error: "You've reached today's limit. Come back tomorrow." })
+  if (ratelimit) {
+    const ip =
+      (req.headers['x-forwarded-for'] as string | undefined)?.split(',')[0]?.trim() ?? '127.0.0.1'
+    const { success } = await ratelimit.limit(ip)
+    if (!success) {
+      return res.status(429).json({ error: "You've reached today's limit. Come back tomorrow." })
+    }
+  } else {
+    console.warn('Rate limiting disabled: UPSTASH_REDIS_REST_URL is not set')
   }
 
   const { transcript } = req.body as { transcript?: unknown }
