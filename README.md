@@ -6,9 +6,11 @@ Practice your story, own your impact. A voice recording tool for women in STEM t
 
 ## Why I built this
 
-In a coaching academy I run, women record themselves answering "tell me about yourself" and I give live feedback. The problem: most of that session time gets spent on basics — filler words, passive language, burying the lead. By the time we get to the nuanced stuff (narrative arc, energy, what actually lands with interviewers), we're out of time.
+Through coaching conversations and networking with women in STEM, I kept hearing the same thing: women with real, strong impact consistently underselling it. Not because the work wasn't there — because the language minimized it.
 
-This tool lets them practice between sessions so they show up already past the basics. Coaching time stays focused on nuance.
+The more answers I heard, the clearer the actual gap became. What people need to know isn't how a coach hears them, or how they hear themselves, or even what a generic AI tool says back. It's how a recruiter — someone with zero context, hearing this once, forming a real impression — actually takes it in.
+
+This tool listens like that. No backstory, no relationship, just the answer as a recruiter would hear it.
 
 ---
 
