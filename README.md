@@ -4,6 +4,9 @@ Practice your story, own your impact. A voice recording tool for women in STEM t
 
 > **Requires Chrome** — uses the Web Speech API for in-browser transcription.
 
+![The recording interface](public/example-input.png)
+*The recording interface*
+
 ---
 
 ## Why I built this
@@ -25,6 +28,9 @@ This tool listens like that. No backstory, no relationship, just the answer as a
    - **What landed** — specific moments or phrasing that worked
    - **What got lost** — what was unclear, buried, or missing entirely
    - **One thing to change** — one concrete, immediately actionable fix
+
+![Example feedback on a strong, complete answer](public/example-feedback.png)
+*Example feedback on a strong, complete answer*
 
 ---
 
