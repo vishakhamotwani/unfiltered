@@ -2,6 +2,8 @@
 
 Practice your story, own your impact. A voice recording tool for women in STEM to practice their "tell me about yourself" interview answer and get AI feedback from a recruiter's perspective.
 
+> **Requires Chrome** — uses the Web Speech API for in-browser transcription.
+
 ---
 
 ## Why I built this
@@ -80,5 +82,3 @@ Then start the dev server:
 npm run dev        # Vite only — API calls won't work without Vercel
 vercel dev         # Full local environment including serverless functions
 ```
-
-Chrome is required for voice recording (Web Speech API).
