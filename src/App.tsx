@@ -3,6 +3,7 @@ import { AppState, FeedbackResponse } from './types/feedback'
 import { useSpeechRecognition, isSpeechSupported } from './hooks/useSpeechRecognition'
 import { useTimer } from './hooks/useTimer'
 import Header from './components/Header'
+import PreRecordingGuidance from './components/PreRecordingGuidance'
 import MicButton from './components/MicButton'
 import TranscriptEditor from './components/TranscriptEditor'
 import FeedbackPanel from './components/FeedbackPanel'
@@ -99,6 +100,8 @@ export default function App() {
       <div className={styles.container}>
         <Header />
         <main className={styles.main}>
+          {appState === 'idle' && <PreRecordingGuidance />}
+
           <MicButton
             appState={appState}
             elapsed={elapsed}

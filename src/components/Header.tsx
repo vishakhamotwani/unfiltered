@@ -1,13 +1,15 @@
+import UsageCounter from './UsageCounter'
 import styles from './Header.module.css'
 
 export default function Header() {
   return (
     <header className={styles.header}>
-      <h1 className={styles.logo}>Unfiltered</h1>
+      <h1 className={styles.logo}>The Unfiltered Engineer</h1>
       <p className={styles.description}>
-        Practice your "tell me about yourself" answer and get honest AI feedback.
-        Record up to 3 minutes. Edit your transcript if needed, then submit.
+        Record your "tell me about yourself" answer. Get feedback on how a recruiter
+        would actually hear it — what lands, what doesn't, and what to change.
       </p>
+      <UsageCounter />
     </header>
   )
 }

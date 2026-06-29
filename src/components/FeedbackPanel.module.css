@@ -26,13 +26,38 @@
   margin-top: 8px;
 }
 
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
 .heading {
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: 24px;
+  margin-bottom: 0;
+}
+
+.downloadButton {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-muted);
+  font-family: var(--font);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  padding: 5px 14px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.downloadButton:hover {
+  border-color: rgba(255, 255, 255, 0.35);
+  color: var(--text);
 }
 
 .sections {
@@ -76,4 +101,13 @@
   line-height: 1.75;
   color: var(--text);
   font-weight: 400;
+}
+
+.watermark {
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-align: right;
+  margin-top: 20px;
+  opacity: 0.5;
 }
