@@ -23,7 +23,7 @@ This tool listens like that. No backstory, no relationship, just the answer as a
 
 1. Hit the mic button and answer out loud — you have up to 3 minutes
 2. Stop recording. A transcript appears, editable if the speech recognition missed anything
-3. Submit. Claude analyzes the answer and returns structured feedback in four sections:
+3. Submit. Claude analyzes the answer and returns structured feedback in four sections. Download the result as an image — transcript and feedback together — to keep as your own version history and track progress over time.
    - **Here's what I think you're good at** — a mirror of who you come across as, not a generic compliment
    - **What landed** — specific moments or phrasing that worked
    - **What got lost** — what was unclear, buried, or missing entirely

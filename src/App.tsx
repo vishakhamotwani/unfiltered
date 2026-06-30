@@ -1,4 +1,5 @@
 import { useState, useCallback, useRef, useEffect } from 'react'
+import { toPng } from 'html-to-image'
 import { AppState, FeedbackResponse } from './types/feedback'
 import { useSpeechRecognition, isSpeechSupported } from './hooks/useSpeechRecognition'
 import { useTimer } from './hooks/useTimer'
@@ -26,6 +27,9 @@ export default function App() {
   const stableOnMaxTime = useCallback(() => stopRecordingRef.current(), [])
   const { elapsed, start: startTimer, stop: stopTimer, reset: resetTimer, isWarning } =
     useTimer(stableOnMaxTime)
+
+  // Ref for capturing transcript + feedback as a single image
+  const captureRef = useRef<HTMLDivElement>(null)
 
   const stopRecording = useCallback(async () => {
     stopTimer()
@@ -79,6 +83,26 @@ export default function App() {
     setAppState('transcribed')
   }, [])
 
+  const handleDownload = useCallback(async () => {
+    const el = captureRef.current
+    if (!el) return
+    try {
+      const dataUrl = await toPng(el, {
+        backgroundColor: '#111318',
+        pixelRatio: 2,
+        width: el.scrollWidth,
+        height: el.scrollHeight,
+        filter: (node) => !(node instanceof Element && node.hasAttribute('data-no-capture')),
+      })
+      const link = document.createElement('a')
+      link.download = 'the-unfiltered-take-feedback.png'
+      link.href = dataUrl
+      link.click()
+    } catch (err) {
+      console.error('Download failed:', err)
+    }
+  }, [])
+
   const showTranscript =
     appState === 'transcribed' || appState === 'submitting' || appState === 'feedback'
 
@@ -117,13 +141,24 @@ export default function App() {
             </p>
           )}
 
-          {showTranscript && (
-            <TranscriptEditor
-              value={editableTranscript}
-              onChange={setEditableTranscript}
-              disabled={appState === 'submitting' || appState === 'feedback'}
-            />
-          )}
+          {/* captureRef wraps transcript + feedback so both are included in the downloaded image */}
+          <div ref={captureRef}>
+            {showTranscript && (
+              <TranscriptEditor
+                value={editableTranscript}
+                onChange={setEditableTranscript}
+                disabled={appState === 'submitting' || appState === 'feedback'}
+              />
+            )}
+
+            {(appState === 'submitting' || appState === 'feedback') && (
+              <FeedbackPanel
+                feedback={feedback}
+                isLoading={appState === 'submitting'}
+                onDownload={handleDownload}
+              />
+            )}
+          </div>
 
           {appState === 'transcribed' && (
             <button
@@ -133,10 +168,6 @@ export default function App() {
             >
               Get feedback
             </button>
-          )}
-
-          {(appState === 'submitting' || appState === 'feedback') && (
-            <FeedbackPanel feedback={feedback} isLoading={appState === 'submitting'} />
           )}
 
           {appState === 'feedback' && (

@@ -10,12 +10,17 @@ export default function UsageCounter() {
       .from('usage_counter')
       .select('count')
       .single()
-      .then(({ data }) => {
-        if (data) setCount((data as { count: number }).count)
+      .then(({ data, error }) => {
+        if (error) {
+          console.error('[UsageCounter] Supabase query failed:', error)
+          return
+        }
+        console.log('[UsageCounter] data:', data)
+        setCount((data as { count: number }).count)
       })
   }, [])
 
-  if (!count) return null
+  if (count === null) return null
 
   return (
     <p className={styles.counter}>
