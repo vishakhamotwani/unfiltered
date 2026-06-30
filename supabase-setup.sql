@@ -10,6 +10,12 @@ insert into usage_counter (id, count)
 values (1, 0)
 on conflict (id) do nothing;
 
+-- Allow anonymous reads (usage counter is non-sensitive)
+alter table usage_counter enable row level security;
+
+create policy "allow_anon_select" on usage_counter
+  for select to anon using (true);
+
 create or replace function increment_counter()
 returns void
 language sql
