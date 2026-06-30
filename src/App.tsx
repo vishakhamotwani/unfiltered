@@ -80,18 +80,21 @@ export default function App() {
   const handleReset = useCallback(() => {
     setFeedback(null)
     setError(null)
-    setAppState('transcribed')
+    setEditableTranscript('')
+    setAppState('idle')
   }, [])
 
   const handleDownload = useCallback(async () => {
     const el = captureRef.current
     if (!el) return
     try {
+      const pad = 32
       const dataUrl = await toPng(el, {
         backgroundColor: '#111318',
         pixelRatio: 2,
-        width: el.scrollWidth,
-        height: el.scrollHeight,
+        width: el.scrollWidth + pad * 2,
+        height: el.scrollHeight + pad * 2,
+        style: { padding: `${pad}px` },
         filter: (node) => !(node instanceof Element && node.hasAttribute('data-no-capture')),
       })
       const link = document.createElement('a')
