@@ -1,6 +1,6 @@
 # The Unfiltered Take
 
-Practice your story, own your impact. A voice recording tool for women in STEM to practice their "tell me about yourself" interview answer and get AI feedback from a recruiter's perspective.
+Practice your story, own your impact. A voice recording tool for anyone in tech to practice their "tell me about yourself" interview answer and get AI feedback from a recruiter's perspective.
 
 > **Requires Chrome** — uses the Web Speech API for in-browser transcription.
 
@@ -11,7 +11,7 @@ Practice your story, own your impact. A voice recording tool for women in STEM t
 
 ## Why I built this
 
-Through coaching conversations and networking with women in STEM, I kept hearing the same thing: women with real, strong impact consistently underselling it. Not because the work wasn't there — because the language minimized it.
+Through conversations and interviews with people in tech, I kept hearing the same thing: people with real, strong impact consistently underselling it. Not because the work wasn't there — because the language minimized it.
 
 The more answers I heard, the clearer the actual gap became. What people need to know isn't how a coach hears them, or how they hear themselves, or even what a generic AI tool says back. It's how a recruiter — someone with zero context, hearing this once, forming a real impression — actually takes it in.
 
@@ -40,7 +40,7 @@ The feedback is framed from a recruiter's perspective, not a coach's. It reflect
 
 Two patterns it's specifically tuned to catch:
 
-**Ownership language.** Women in STEM consistently undersell individual contribution. The prompt explicitly flags "we" instead of "I", "worked on" instead of "led", "helped with" instead of "owned" — and suggests stronger alternatives directly.
+**Ownership language.** People in technical roles consistently undersell individual contribution. The prompt explicitly flags "we" instead of "I", "worked on" instead of "led", "helped with" instead of "owned" — and suggests stronger alternatives directly.
 
 **Tone calibration.** A thin or incomplete answer gets told so. The feedback doesn't open with praise an answer hasn't earned. A short, vague answer gets a direct response naming the gaps. Strong, complete answers get genuine enthusiasm. The feedback matches the actual quality of what was said.
 
