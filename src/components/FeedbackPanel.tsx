@@ -27,7 +27,7 @@ export default function FeedbackPanel({ feedback, isLoading }: FeedbackPanelProp
         style: { padding: '32px' },
       })
       const link = document.createElement('a')
-      link.download = 'the-unfiltered-engineer-feedback.png'
+      link.download = 'the-unfiltered-take-feedback.png'
       link.href = dataUrl
       link.click()
     } catch (err) {
@@ -67,7 +67,7 @@ export default function FeedbackPanel({ feedback, isLoading }: FeedbackPanelProp
             </div>
           ))}
         </div>
-        <p className={styles.watermark}>The Unfiltered Engineer</p>
+        <p className={styles.watermark}>The Unfiltered Take</p>
       </div>
     </div>
   )

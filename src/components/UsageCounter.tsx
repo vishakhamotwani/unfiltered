@@ -19,7 +19,7 @@ export default function UsageCounter() {
 
   return (
     <p className={styles.counter}>
-      {count.toLocaleString()} engineers have practiced their story
+      {count.toLocaleString()} people have practiced their story
     </p>
   )
 }
