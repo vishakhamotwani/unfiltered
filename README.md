@@ -51,7 +51,7 @@ Two patterns it's specifically tuned to catch:
 - **CSS modules over Tailwind** — wanted clean separation between structure and style without a utility class sprawl in JSX
 - **Web Speech API over Whisper or Deepgram** — free, no extra API key, no audio leaving the browser, good enough for MVP; the goal is practice, not perfect transcription
 - **Vercel serverless functions over a separate backend** — single repo, single deploy, Claude calls stay server-side so the API key is never exposed
-- **No auth** — removes friction; there's nothing to protect because no audio is stored and no user data is kept
+- **No auth** — removes friction; there's nothing to protect because no audio is stored and no user data is kept. The only thing recorded is an anonymous submission count.
 - **Supabase for a usage counter only** — one table, one row, one integer; not user data, just a submission count to track usage
 - **System prompt in an environment variable, not in code** — the prompt is the product's real differentiator; it should be iterable without a deploy, and it shouldn't live in git history
 
